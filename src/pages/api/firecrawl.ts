@@ -1,0 +1,35 @@
+import { PluginErrorType, createErrorResponse } from "@lobehub/chat-plugin-sdk";
+import { VercelRequest, VercelResponse } from "@vercel/node";
+
+
+export const config = {
+    runtime: 'edge',
+  };
+
+
+export default async (req:Request) => {
+    if (req.method !== 'POST') return createErrorResponse(PluginErrorType.MethodNotAllowed);
+
+    const body = await req.json();
+
+    const param = body.arguments;
+
+    const result = await fetch("http://47.236.83.54:45127/v0/scrape", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: param
+    });
+
+    if (result.status === 200) {
+        const body = result.body;
+        return new Response(body, {
+        status: 200,
+        });
+    } else {
+        return new Response('请求参数不对或者服务暂时不可用', {
+        status: 500,
+        });
+    }
+}
