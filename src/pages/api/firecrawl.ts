@@ -5,7 +5,7 @@ export const config = {
     runtime: 'edge',
   };
 
-async function fetchData(url: string, options: RequestInit) {
+async function fetchData(url: string, options: any) {
     const result = await fetch(url, options);
     return result.json();
 }
