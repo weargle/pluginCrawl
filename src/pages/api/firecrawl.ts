@@ -13,7 +13,7 @@ export default async (req:Request) => {
 
     const param = body.arguments;
 
-    const result = await fetch("http://47.236.83.54:45127/v0/scrape", {
+    const result = await fetchData("http://47.236.83.54:45127/v0/scrape", {
         body: param,
         headers: {
             'Content-Type': 'application/json',
@@ -21,9 +21,7 @@ export default async (req:Request) => {
         method: 'POST'
     });
 
-    const status = await result.status;
-
-    if (status === 200) {
+    if (result.status === 200) {
         const body = result.body;
         return new Response(body, {
         status: 200,
@@ -32,5 +30,10 @@ export default async (req:Request) => {
         return new Response('请求参数不对或者服务暂时不可用', {
         status: 500,
         });
+    }
+
+    async function fetchData(url: string, options: RequestInit) {
+        const result = await fetch(url, options);
+        return result.json();
     }
 }
