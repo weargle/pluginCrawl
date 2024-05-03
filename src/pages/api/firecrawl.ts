@@ -7,7 +7,7 @@ export const config = {
 
 async function fetchData(url: string, options: any) {
     const result = await fetch(url, options);
-    return result.json();
+    return result;
 }
 
 export default async (req:Request) => {
