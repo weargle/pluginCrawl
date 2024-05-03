@@ -20,13 +20,15 @@ export default async (req:Request) => {
         method: 'POST'
     });
 
+    console.log(result);
+
     if (result.status === 200) {
         const body = result.body;
         return new Response(body, {
             status: 200,
         });
     } else {
-        return new Response(result.body + "------", {
+        return new Response(result.body, {
             status: result.status,
         });
     }
