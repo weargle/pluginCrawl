@@ -1,26 +1,19 @@
 import { PluginErrorType, createErrorResponse } from "@lobehub/chat-plugin-sdk";
+import crawlResult from "./crawlUtil";
 
 
 export const config = {
     runtime: 'edge',
   };
 
-export default async (req:Request) => {
+  export default async (req:Request) => {
     if (req.method !== 'POST') return createErrorResponse(PluginErrorType.MethodNotAllowed);
 
     const body = await req.json();
 
     const param = body.arguments;
 
-    const result = await fetch("http://cksp.asia:45127/v0/scrape", {
-        body: param,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        method: 'POST'
-    });
-
-    console.log(result);
+    const result = await crawlResult(param);
 
     if (result.status === 200) {
         const body = result.body;
@@ -32,5 +25,4 @@ export default async (req:Request) => {
             status: result.status,
         });
     }
-
-}
+  }
