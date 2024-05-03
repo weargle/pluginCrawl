@@ -1,5 +1,4 @@
 import { PluginErrorType, createErrorResponse } from "@lobehub/chat-plugin-sdk";
-import { VercelRequest, VercelResponse } from "@vercel/node";
 
 
 export const config = {
