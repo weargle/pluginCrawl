@@ -5,6 +5,10 @@ export const config = {
     runtime: 'edge',
   };
 
+async function fetchData(url: string, options: RequestInit) {
+    const result = await fetch(url, options);
+    return result.json();
+}
 
 export default async (req:Request) => {
     if (req.method !== 'POST') return createErrorResponse(PluginErrorType.MethodNotAllowed);
@@ -32,8 +36,4 @@ export default async (req:Request) => {
         });
     }
 
-    async function fetchData(url: string, options: RequestInit) {
-        const result = await fetch(url, options);
-        return result.json();
-    }
 }
