@@ -14,11 +14,11 @@ export default async (req:Request) => {
     const param = body.arguments;
 
     const result = await fetch("http://47.236.83.54:45127/v0/scrape", {
-        method: 'POST',
+        body: param,
         headers: {
             'Content-Type': 'application/json',
         },
-        body: param
+        method: 'POST'
     });
 
     if (result.status === 200) {
