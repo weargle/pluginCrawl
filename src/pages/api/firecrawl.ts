@@ -5,11 +5,6 @@ export const config = {
     runtime: 'edge',
   };
 
-async function fetchData(url: string, options: any) {
-    const result = await fetch(url, options);
-    return result;
-}
-
 export default async (req:Request) => {
     if (req.method !== 'POST') return createErrorResponse(PluginErrorType.MethodNotAllowed);
 
