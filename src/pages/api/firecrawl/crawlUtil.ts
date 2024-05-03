@@ -6,8 +6,8 @@ const crawlResult = async (param: string) => {
     const result = await fetch(BASE_URL, {
         body: param,
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + VERCEL_ACCESS_TOKEN
+            'Authorization': 'Bearer ' + VERCEL_ACCESS_TOKEN,
+            'Content-Type': 'application/json'
         },
         method: 'POST'
     });
