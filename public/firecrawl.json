@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "api": [
     {
-      "url": "http://localhost:3400/api/firecrawl",
+      "url": "http://:3400/api/firecrawl",
       "name": "getCirecrawl",
       "description": "根据用户的url爬取网页内容",
       "parameters": {
