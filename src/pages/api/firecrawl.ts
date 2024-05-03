@@ -12,7 +12,7 @@ export default async (req:Request) => {
 
     const param = body.arguments;
 
-    const result = await fetch("http://47.236.83.54:45127/v0/scrape", {
+    const result = await fetch("http://cksp.asia:45127/v0/scrape", {
         body: param,
         headers: {
             'Content-Type': 'application/json',
@@ -20,12 +20,15 @@ export default async (req:Request) => {
         method: 'POST'
     });
 
-    console.log(result);
-
-
-    const resBody = await result.body;
-    return new Response(resBody, {
+    if (result.status === 200) {
+        const body = result.body;
+        return new Response(body, {
         status: 200,
-    });
+        });
+    } else {
+        return new Response(result.body, {
+            status: result.status,
+        });
+    }
 
 }
