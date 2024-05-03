@@ -21,7 +21,9 @@ export default async (req:Request) => {
         method: 'POST'
     });
 
-    if (result.status === 200) {
+    const status = await result.status;
+
+    if (status === 200) {
         const body = result.body;
         return new Response(body, {
         status: 200,
